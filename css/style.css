@@ -1,0 +1,191 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+:root {
+  /* typeSize*/
+  --ts--2: clamp(0.64rem, calc(0.57rem + 0.31vw), 0.84rem);
+  --ts--1: clamp(0.8rem, calc(0.69rem + 0.49vw), 1.13rem);
+  --ts-0: clamp(1rem, calc(0.82rem + 0.75vw), 1.5rem);
+  --ts-1: clamp(1.25rem, calc(0.99rem + 1.13vw), 2rem);
+  --ts-2: clamp(1.56rem, calc(1.17rem + 1.66vw), 2.67rem);
+  --ts-3: clamp(1.95rem, calc(1.39rem + 2.4vw), 3.55rem);
+  --ts-4: clamp(2.44rem, calc(1.63rem + 3.45vw), 4.74rem);
+  --ts-5: clamp(3.05rem, calc(1.9rem + 4.9vw), 6.31rem);
+  /* SpaceSize */
+  --sp--2: clamp(0.5rem, calc(0.41rem + 0.38vw), 0.75rem);
+  --sp--1: clamp(0.75rem, calc(0.62rem + 0.56vw), 1.13rem);
+  --sp-1: clamp(1rem, calc(0.82rem + 0.75vw), 1.5rem);
+  --sp-2: clamp(1.5rem, calc(1.24rem + 1.13vw), 2.25rem);
+  --sp-3: clamp(2rem, calc(1.65rem + 1.5vw), 3rem);
+  --sp-4: clamp(3rem, calc(2.47rem + 2.25vw), 4.5rem);
+  /* general */
+  --ff: 'Poppins', sans-serif;
+  /* Colors */
+  --clr-gray-1: hsl(0, 0%, 98%);
+  --clr-gray-3: hsl(229, 6%, 66%);
+  --clr-gray-6: hsl(234, 12%, 34%);
+  --clr-red-3: hsl(0, 78%, 62%);
+  --clr-cyan-3: hsl(180, 62%, 55%);
+  --clr-orange-3: hsl(34, 97%, 64%);
+  --clr-blue-3: hsl(212, 86%, 64%);
+  --clr-text: var(--clr-gray-6);
+  --clr-bg: var(--clr-gray-1);
+}
+
+body {
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+  font-size: var(--ts-0);
+  font-family: var(--ff);
+  font-weight: 400;
+  padding: var(--sp-1);
+}
+
+main {
+  max-width: 90rem;
+  margin: auto;
+}
+
+.flow > * + * {
+  margin-block-start: var(--sp-1);
+}
+
+.flow-large > * + * {
+  margin-block-start: var(--sp-4);
+}
+
+.description {
+  text-align: center;
+  max-width: 55ch;
+  margin: auto;
+}
+
+.heading__container {
+  font-size: var(--ts-2);
+  font-weight: 200;
+}
+
+.heading {
+  font-weight: 600;
+}
+
+.cards__container {
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.cards {
+  background-color: white;
+  padding: var(--sp-1);
+  border-top: 0.2em solid var(--clr-bd, transparent);
+  border-radius: 0.4vw;
+  box-shadow: 0rem 0.05rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.cards > img {
+  margin-left: auto;
+}
+
+[data-border-color='cyan'] {
+  --clr-bd: var(--clr-cyan-3);
+}
+
+[data-border-color='blue'] {
+  --clr-bd: var(--clr-blue-3);
+}
+
+[data-border-color='red'] {
+  --clr-bd: var(--clr-red-3);
+}
+
+[data-border-color='orange'] {
+  --clr-bd: var(--clr-orange-3);
+}
+
+@media (min-width: 70rem) {
+  .cards__container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    align-items: center;
+    grid-template-areas:
+      'card1 card2 card4'
+      'card1 card3 card4';
+  }
+
+  [data-border-color='cyan'] {
+    grid-area: card1;
+  }
+
+  [data-border-color='blue'] {
+    grid-area: card4;
+  }
+
+  [data-border-color='red'] {
+    grid-area: card2;
+  }
+
+  [data-border-color='orange'] {
+    grid-area: card3;
+  }
+}
